@@ -1,0 +1,11 @@
+[package]
+name = "rstrie"
+version = "0.1.0"
+authors = ["Petri Avikainen <petri.avikainen@gmail.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+helix = "0.7.2"
+radix_trie = "0.1.2"
