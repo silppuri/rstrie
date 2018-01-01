@@ -14,8 +14,10 @@ ruby! {
             Rstrie { helix, trie: SequenceTrie::<String, i64>::new() }
         }
         def insert(&mut self, key: String, value: i64) -> bool {
-            self.trie.insert(&[key], value);
-            true
+            match self.trie.insert(&[key], value) {
+                None => true,
+                Some(_) => false
+            }
         }
         def get(&self, key: String) -> Option<i64> {
            match self.trie.get(&[key]) {
