@@ -10,4 +10,6 @@ class Rstrie
   def add(key, value = -1)
     insert(key, value)
   end
+
+  alias_method :has_key?, :has_key
 end

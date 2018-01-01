@@ -8,14 +8,15 @@ RSpec.describe Rstrie do
     @trie.add('frederico')
   end
 
-  # describe :has_key? do
-  # it 'returns true for words in the trie' do
-  #   @trie.has_key?('rocket').should be_true
-  # end
-  #
-  # it 'returns nil for words that are not in the trie' do
-  #   @trie.has_key?('not_in_the_trie').should be_nil
-  # end
+  describe :has_key? do
+    it 'returns true for words in the trie' do
+      expect(@trie.has_key?('rocket')).to eq true
+    end
+
+    it 'returns false for words that are not in the trie' do
+      expect(@trie.has_key?('not_in_the_trie')).to eq false
+    end
+  end
 
   describe :get do
     it 'returns -1 for words in the trie without a weight' do

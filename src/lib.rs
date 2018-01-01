@@ -23,5 +23,12 @@ ruby! {
                Some(i) => Some(*i)
            }
         }
+
+        def has_key(&self, key: String) -> bool {
+           match self.trie.get(&[key]) {
+               None => false,
+               Some(_) => true
+           }
+        }
     }
 }
