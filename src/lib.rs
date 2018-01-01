@@ -30,5 +30,9 @@ ruby! {
                Some(_) => true
            }
         }
+
+        def delete(&mut self, key: String) {
+            self.trie.remove(&[key])
+        }
     }
 }

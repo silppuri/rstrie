@@ -49,4 +49,11 @@ RSpec.describe Rstrie do
     #   expect(@trie.get('doot')).to eq 'Heeey'
     # end
   end
+
+  describe :delete do
+    it "deletes a word from the trie" do
+      @trie.delete('rocket')
+      expect(@trie.has_key?('rocket')).to eq false
+    end
+  end
 end
