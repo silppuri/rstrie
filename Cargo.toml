@@ -8,4 +8,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 helix = "0.7.2"
-radix_trie = "0.1.2"
+sequence_trie = "*"
