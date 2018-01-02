@@ -16,21 +16,41 @@ File.new('./bin/female-names.txt').each_line do |name|
   }
 end
 
+fast_trie = Trie.new
+rstrie = Rstrie.new
 Benchmark.ips do |x|
-  x.report('Fast Trie') do |times|
+  x.report('Fast Trie add') do |times|
     times.times do
-      trie = Trie.new
       prefixes.each do |prefix|
-        trie.add(prefix)
+        fast_trie.add(prefix)
       end
     end
   end
 
-  x.report('Rust trie') do |times|
+  x.report('Rust trie add') do |times|
     times.times do
-      trie = Rstrie.new
       prefixes.each do |prefix|
-        trie.add(prefix)
+        rstrie.add(prefix)
+      end
+    end
+  end
+
+  x.compare!
+end
+
+Benchmark.ips do |x|
+  x.report('Fast Trie get') do |times|
+    times.times do
+      prefixes.each do |prefix|
+        fast_trie.get(prefix)
+      end
+    end
+  end
+
+  x.report('Rust trie get') do |times|
+    times.times do
+      prefixes.each do |prefix|
+        rstrie.get(prefix)
       end
     end
   end
