@@ -32,23 +32,14 @@ ruby! {
             Rstrie { helix, trie: SequenceTrie::<u8, VALUE>::new() }
         }
         def insert(&mut self, key: String, value: VALUE) -> bool {
-            match self.trie.insert(&key.into_bytes(), value) {
-                None => true,
-                Some(_) => false
-            }
+            self.trie.insert(&key.into_bytes(), value).is_none()
         }
         def get(&self, key: String) -> Option<VALUE> {
-           match self.trie.get(&key.into_bytes()) {
-               None => None,
-               Some(i) => Some(*i)
-           }
+            self.trie.get(&key.into_bytes()).cloned()
         }
 
         def has_key(&self, key: String) -> bool {
-           match self.trie.get(&key.into_bytes()) {
-               None => false,
-               Some(_) => true
-           }
+            self.trie.get(&key.into_bytes()).is_some()
         }
 
         def delete(&mut self, key: String) {
