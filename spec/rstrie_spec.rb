@@ -56,4 +56,28 @@ RSpec.describe Rstrie do
       expect(@trie.has_key?('rocket')).to eq false
     end
   end
+
+  describe :children do
+    it 'returns all words beginning with a given prefix' do
+      children = @trie.children('roc')
+      expect(children.size).to eq 2
+      expect(children).to include('rock')
+      expect(children).to include('rocket')
+    end
+
+    it 'returns blank array if prefix does not exist' do
+      expect(@trie.children('ajsodij')).to be_empty
+    end
+
+    it 'includes the prefix if the prefix is a word' do
+      children = @trie.children('rock')
+      expect(children.size).to eq 2
+      expect(children).to include('rock')
+      expect(children).to include('rocket')
+    end
+
+    it 'returns blank array if prefix is nil' do
+      expect(@trie.children(nil)).to be_empty
+    end
+  end
 end
