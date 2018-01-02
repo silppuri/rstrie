@@ -44,10 +44,10 @@ RSpec.describe Rstrie do
       expect(@trie.get('chicka')).to eq 72_000
     end
 
-    # it 'adds a word with a non-numeric value to the trie' do
-    #   expect(@trie.add('doot', 'Heeey')).to eq true
-    #   expect(@trie.get('doot')).to eq 'Heeey'
-    # end
+    it 'adds a word with a non-numeric value to the trie' do
+      expect(@trie.add('doot', 'Heeey')).to eq true
+      expect(@trie.get('doot')).to eq 'Heeey'
+    end
   end
 
   describe :delete do
