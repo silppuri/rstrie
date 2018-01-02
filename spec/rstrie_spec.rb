@@ -20,7 +20,7 @@ RSpec.describe Rstrie do
 
   describe :get do
     it 'returns -1 for words in the trie without a weight' do
-      expect(@trie.get('rocket')).to eq -1
+      expect(@trie.get('rocket')).to eq(-1)
     end
 
     it 'returns nil if the word is not in the trie' do
