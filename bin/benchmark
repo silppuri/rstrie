@@ -6,6 +6,7 @@ require 'benchmark/ips'
 require 'securerandom'
 require 'rstrie'
 require 'trie'
+require 'rambling-trie'
 
 prefixes = []
 File.new('./bin/female-names.txt').each_line do |name|
@@ -18,8 +19,9 @@ end
 
 fast_trie = Trie.new
 rstrie = Rstrie.new
+rambling_trie = Rambling::Trie.create
 Benchmark.ips do |x|
-  x.report('Fast Trie add') do |times|
+  x.report('Fast trie add') do |times|
     times.times do
       prefixes.each do |prefix|
         fast_trie.add(prefix)
@@ -35,26 +37,41 @@ Benchmark.ips do |x|
     end
   end
 
+  x.report('Rambling trie add') do |times|
+    times.times do
+      prefixes.each do |prefix|
+        rambling_trie.add(prefix)
+      end
+    end
+  end
+
   x.compare!
 end
 
 Benchmark.ips do |x|
-  x.report('Fast Trie get') do |times|
+  x.report('Fast trie has_key?') do |times|
     times.times do
       prefixes.each do |prefix|
-        fast_trie.get(prefix)
+        fast_trie.has_key?(prefix)
       end
     end
   end
 
-  x.report('Rust trie get') do |times|
+  x.report('Rust trie has_key?') do |times|
     times.times do
       prefixes.each do |prefix|
-        rstrie.get(prefix)
+        rstrie.has_key?(prefix)
+      end
+    end
+  end
+
+  x.report('Rambling trie include?') do |times|
+    times.times do
+      prefixes.each do |prefix|
+        rambling_trie.include?(prefix)
       end
     end
   end
 
   x.compare!
 end
-

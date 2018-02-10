@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'benchmark-ips', '~> 2.7'
   spec.add_development_dependency 'fast_trie', '~>0.5.0'
+  spec.add_development_dependency 'rambling-trie', '~>1.0.2'
 end
