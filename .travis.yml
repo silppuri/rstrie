@@ -7,4 +7,4 @@ before_install:
   - if [ ! -e "$HOME/.cargo/bin" ]; then curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y; fi
   - export PATH="$HOME/.cargo/bin:$PATH"
   - rustup default stable
-- rustc --version
+  - rustc --version
