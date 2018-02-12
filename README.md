@@ -1,3 +1,5 @@
+![BuildStatus](https://travis-ci.org/silppuri/rstrie.svg?branch=master)
+
 # Rstrie
 
 [Trie](http://wikipedia.org/wiki/Trie) implementation made with Rust extensions.
